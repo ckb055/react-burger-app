@@ -19,7 +19,26 @@ class BurgerBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        purchaseable: false
+    }
+
+    updatePurchaseState() {
+        // this one is making a copy of the current ingredients
+
+        const ingredients = {
+            ...this.state.ingredients
+        };
+        // Object.keys returns an array just copying out the keys.
+
+        const sum = Object.keys(ingreients)
+            .map(igKey => {
+                return ingredients[igKey]
+            })
+            .reduce((sum, el) => {
+                return sum + el;
+            }, 0);
+            this.setState({purchasable: sum > 0});
     }
 
     addIngredientHandler = (type) => {
