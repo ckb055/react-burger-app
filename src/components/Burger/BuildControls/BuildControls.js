@@ -21,6 +21,13 @@ const buildControls = (props) => (
                 removed={() => props.ingredientRemoved(ctrl.type)}
                 disabled={props.disabled[ctrl.type]}/>
         ))}
+        <button
+            className={classes.ClearButton}
+            // disable CLEAR ALL button if order does not contain any ingredients
+            disabled={props.containsIngredients}
+            onClick={props.clearAll}>
+                CLEAR ALL
+        </button>
         <button 
             className={classes.OrderButton}
             disabled={!props.purchasable}

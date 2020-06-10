@@ -22,8 +22,10 @@ class BurgerBuilder extends Component {
             meat: 0
         },
         totalPrice: 4,
+        // purchasable is for order now
         purchaseable: false,
-        purchasing: false
+        // purchasing is for the backdrop
+        purchasing: false,
     }
 
     updatePurchaseState(ingredients) {
@@ -45,8 +47,13 @@ class BurgerBuilder extends Component {
         const oldCount = this.state.ingredients[type];
         const updatedCount = oldCount + 1;
         const updatedIngredients = {
+            // creating a clone of the array
             ...this.state.ingredients
         };
+        // console.log accepts any number of params in js
+        // spread operator is no different from original?
+        // console.log("updatedIngredients: ", updatedIngredients);
+        // console.log("this.state.ingredients: ", this.state.ingredients);
         updatedIngredients[type] = updatedCount;
         const priceAddition = INGREDIENT_PRICES[type];
         const oldPrice = this.state.totalPrice;
@@ -72,6 +79,18 @@ class BurgerBuilder extends Component {
         this.updatePurchaseState(updatedIngredients);
     }
 
+    clearIngredientHandler = (type) => {
+        // functionality for clearing all current ingredients (reset to initial state)
+        const emptyIngredients = {
+            salad: 0,
+            bacon: 0,
+            cheese: 0,
+            meat: 0
+        };
+        this.setState({totalPrice: 4, ingredients: emptyIngredients});
+        this.updatePurchaseState(emptyIngredients);
+    }
+
     purchaseHandler = () => {
         // normal method, should be triggered everytime we click on order now
         this.setState({purchasing: true});
@@ -85,9 +104,13 @@ class BurgerBuilder extends Component {
         const disabledInfo = {
             ...this.state.ingredients
         };
+        // console.log(this.state.ingredients);
+        // console.log("disabledInfo: " + disabledInfo);
         for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
+        // console.log(disabledInfo);
+        /* disabled Info is something like : {salad: true, bacon: true, cheese: true, meat: true} */
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
@@ -100,7 +123,10 @@ class BurgerBuilder extends Component {
                     disabled={disabledInfo}
                     // purchasable is for the ORDER NOW button.
                     purchasable={this.state.purchasable}
+                    // if total price = 4 => no ingredients in burger
+                    containsIngredients={this.state.totalPrice === 4}
                     ordered={this.purchaseHandler}
+                    clearAll={this.clearIngredientHandler}
                     price={this.state.totalPrice} />
             </Aux>
         );
