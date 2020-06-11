@@ -10,7 +10,6 @@ class App extends Component {
         <Layout>
           {/* BurgerBuilder can be a self closing component because dont need to wrap anything*/}
           <BurgerBuilder />
-          <p>Test</p>
         </Layout>
       </div>
     );

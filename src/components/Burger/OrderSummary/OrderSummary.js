@@ -1,13 +1,15 @@
 import React from 'react';
 
 import Aux from '../../../hoc/Auxiliary';
+import Button from '../../UI/Button/Button';
 
 const orderSummary = (props) => {
     const ingredientSummary = Object.keys(props.ingredients)
         .map(igKey => {
             return (
             <li>
-            {/*the textTransform: capitalize, the inner brackets is to mark a javascript obejct*/}
+            {/*the textTransform: capitalize, the inner brackets = javascript object
+             outer bracket = JSCode in JSX*/}
                 <span style={{textTransform: 'capitalize'}}>
                     {igKey}
                     </span> 
@@ -24,6 +26,9 @@ const orderSummary = (props) => {
                 {ingredientSummary}
             </ul>
             <p>Continue to Checkout?</p>
+            {/* btnType is props passed into Button.js*/}
+            <Button btnType="Danger" clicked={props.purchaseCancelled}>CANCEL</Button>
+            <Button btnType="Success" clicked={props.purchaseContinued}>CONTINUE</Button>
         </Aux>
     );
 };

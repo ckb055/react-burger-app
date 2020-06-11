@@ -10,6 +10,21 @@
 }
 
 .ClearButton {
+    background-color: #e9c58f;
+    font-family: Lucida Sans;
+    font-weight: bold;
+    font-size: medium;
+    padding: 2em;
+    color: red;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ClearButton:disabled {
+    background-color: #9b815e;
+    font-family: Lucida Sans;
+    font-weight: bold;
+    font-size: medium;
     padding: 2em;
     color: red;
     border-radius: 4px;
@@ -17,6 +32,21 @@
 }
 
 .OrderButton {
+    background-color: #e9c58f;
+    font-family: Lucida Sans;
+    font-weight: bold;
+    font-size: medium;
+    padding: 2em;
+    color: black;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.OrderButton:disabled {
+    background-color: #9b815e;
+    font-family: Lucida Sans;
+    font-weight: bold;
+    font-size: medium;
     padding: 2em;
     color: black;
     border-radius: 4px;
